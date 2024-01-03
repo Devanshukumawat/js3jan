@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="" alt="" id="pimage">
+   <div id="product"></div>
+   <img src="" alt="" id="pimage1">
+   <div id="product1"></div>
+    <button onclick="apiData()">Show data</button>
+
+    <script>
+        async function apiData(){
+    let result = await fetch("https://dummyjson.com/products")
+    let data = await result.json()
+    let ptitle = data.products[0].title
+    let pdesc = data.products[0].description
+    let pprice = data.products[0].price
+    let prating = data.products[0].rating
+    let pimage = data.products[0].images[0]
+
+    let p1title = data.products[1].title
+    let p1desc = data.products[1].description
+    let p1price = data.products[1].price
+    let p1rating = data.products[1].rating
+    let p1image = data.products[1].images[0]
+ 
+    document.getElementById("pimage").attributes[0].value=pimage
+  
+    document.getElementById('product').innerHTML="Product title:- "+ptitle+"</br>"+"Product Description :- "+pdesc+"</br>"+"Product Price :- "+pprice+"</br>"+"Product Rating :- "+prating
+
+
+    document.getElementById("pimage1").attributes[0].value=p1image
+    document.getElementById('product1').innerHTML="Product title:- "+p1title+"</br>"+"Product Description :- "+p1desc+"</br>"+"Product Price :- "+p1price+"</br>"+"Product Rating :- "+p1rating
+    
+    console.log(data)
+}
+
+
+    </script>
+</body>
+</html>
